@@ -3,7 +3,7 @@ require_relative 'benchmarks/object_nil'
 require_relative 'benchmarks/integer_increase'
 
 require_relative 'benchmarks/loops'
-require_relative 'benchmarks/statement_modifier' # if ... vs ... if, unless ... vs ... unless
+require_relative 'benchmarks/statement_modifier'
 
 require_relative 'benchmarks/string_create'
 require_relative 'benchmarks/string_concat_capacity'
@@ -24,16 +24,14 @@ require_relative 'benchmarks/array_branch_prediction'
 
 require_relative 'benchmarks/hash_create' 
 require_relative 'benchmarks/hash_empty' 
-=begin
-require_relative 'benchmarks/hash_add' # store
-require_relative 'benchmarks/hash_delete' # delete vs {}
-require_relative 'benchmarks/hash_fetch_dig'
-require_relative 'benchmarks/hash_each' # each each_key each_pair each_value
-require_relative 'benchmarks/hash_has_key' # include? vs [] vs key vs member
-require_relative 'benchmarks/hash_size_length' # length, size
-
-require_relative 'benchmarks/array_set_hash_get'
-=end
+require_relative 'benchmarks/hash_add'
+require_relative 'benchmarks/hash_delete'
+require_relative 'benchmarks/hash_delete_all' 
+require_relative 'benchmarks/hash_each'
+require_relative 'benchmarks/hash_get'
+require_relative 'benchmarks/hash_select_specific'
+require_relative 'benchmarks/hash_has_key' 
+require_relative 'benchmarks/hash_size'
 
 
 WIDTH = 20
@@ -59,6 +57,14 @@ task :default => [
 
   :hash_create,
   :hash_empty,
+  :hash_add,
+  :hash_delete,
+  :hash_delete_all,
+  :hash_each,
+  :hash_get,
+  :hash_has_key,
+  :hash_select_specific,
+  :hash_size,
 
   :string_create,
   :string_concat,
@@ -218,6 +224,63 @@ task :hash_empty do
   pr HASH_EMPTY
   Benchmarks::HashEmpty.start
 end
+
+HASH_ADD = 'Hash Add'
+desc HASH_ADD
+task :hash_add do
+  pr HASH_ADD
+  Benchmarks::HashAdd.start
+end
+
+HASH_DELETE = 'Hash Delete'
+desc HASH_DELETE
+task :hash_delete do
+  pr HASH_DELETE
+  Benchmarks::HashDelete.start
+end
+
+HASH_DELETE_ALL = 'Hash Delete All'
+desc HASH_DELETE_ALL
+task :hash_delete_all do
+  pr HASH_DELETE_ALL
+  Benchmarks::HashDeleteAll.start
+end
+
+HASH_SELECT_SPECIFIC = 'Hash Select Specific'
+desc HASH_SELECT_SPECIFIC
+task :hash_select_specific do
+  pr HASH_SELECT_SPECIFIC
+  Benchmarks::HashSelectSpecific.start
+end
+
+HASH_GET = 'Hash Get'
+desc HASH_GET
+task :hash_get do
+  pr HASH_GET
+  Benchmarks::HashGet.start
+end
+
+HASH_HAS_KEY = 'Hash Has Key'
+desc HASH_HAS_KEY
+task :hash_has_key do
+  pr HASH_HAS_KEY
+  Benchmarks::HashHasKey.start
+end
+
+HASH_SIZE = 'Hash Size'
+desc HASH_SIZE
+task :hash_size do
+  pr HASH_SIZE
+  Benchmarks::HashSize.start
+end
+
+HASH_EACH = 'Hash Each'
+desc HASH_EACH
+task :hash_each do
+  pr HASH_EACH
+  Benchmarks::HashEach.start
+end
+
 
 
 
