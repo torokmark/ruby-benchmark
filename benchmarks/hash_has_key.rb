@@ -7,16 +7,22 @@ module Benchmarks
     def self.start
       hsh = {}
       10_000.times { |i| hsh[i] = rand(1_000) }
+      key = 4567
 
       Benchmark.bm(WIDTH) do |r|
-        r.report('size'){
+        r.report('[]'){
           LOOP.times do
-            hsh.size 
+            hsh[key]
           end
         }
-        r.report('length'){
+        r.report('fetch'){
           LOOP.times do
-            hsh.length 
+            hsh.fetch(key)
+          end
+        }
+        r.report('dig') { 
+          LOOP.times do
+            hsh.dig(key)
           end
         }
       end
