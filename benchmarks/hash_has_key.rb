@@ -17,6 +17,13 @@ module Benchmarks
             end
           end
         }
+        r.report('.has_key?'){
+          LOOP.times do
+            if hsh.has_key?(key)
+              a = ''
+            end
+          end
+        }
         r.report('.key?'){
           LOOP.times do
             if hsh.key?(key)
