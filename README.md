@@ -8,7 +8,6 @@ Benchmark is a Ruby module to measure the performance of a code or a sample.
 
 ### Results
 
-```
 ---
 
 #### Object nil check :: nil vs == vs .nil?
